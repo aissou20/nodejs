@@ -105,8 +105,11 @@ export class User implements IUser {
     get pseudo() :string |undefined{
         return this._pseudo;
     }
-    set  pseudo(value:string |undefined){
 
+    /**
+     * on en aura pas besoin car  c'est à vide
+     */
+    set  pseudo(value:string |undefined){
     }
 
     get imgUrl() :string |undefined{
