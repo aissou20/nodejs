@@ -21,9 +21,6 @@ var Users = /** @class */ (function () {
             this._ids.push(user.id);
             this._users[user.id] = user;
         }
-        // if (!(user.id in this._users)) {
-        //     this._ids.push(user.id)
-        // }
     };
     Users.prototype.del = function (id) {
         if (this._ids.indexOf(id) !== -1) {
@@ -36,15 +33,6 @@ var Users = /** @class */ (function () {
         }
         return false;
     };
-    /* next(...args: [] | [any]): { value: IUser, done?: false } | { value?: IUser, done: true } {
-         const currentId = this.nextIdx;
-         this.nextIdx++;
-         if (this.nextIdx >= this._ids.length) {
-             this.nextIdx = 0;
-             return {value: this._users[currentId], done: true}
-         }
-         return {value: this._users[currentId], done: false}
-     }*/
     Users.prototype.next = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {

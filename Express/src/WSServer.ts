@@ -71,6 +71,12 @@ export class WSServer implements IWSServer {
                 pseudo: "Utilisateur test",
                 imgUrl: "image url",
             })
+            const user1 = new User({
+                id: socket.id,
+                collection: this.onlineUsers,
+                pseudo: "Utilisateur 1",
+                imgUrl: "image url 1",
+            })
             console.log("user__", user)
 
             const room = new Room({
@@ -80,8 +86,8 @@ export class WSServer implements IWSServer {
                 usersCollection: this.onlineUsers,
             });
 
-
             this.onlineUsers.add(user);
+            this.onlineUsers.add(user1);
             const getUserInfo = this.buildUserInfo()
             user.joinRoom(socket.id);
 
@@ -89,20 +95,14 @@ export class WSServer implements IWSServer {
             const getRoomInfo = this.buildRoomInfo()
             room.joinUser(room.id)
 
-
-           /* const userList = this.onlineUsers;
-            console.log(userList)
-            const roomList = this.rooms.all;*/
-
-
             socket.emit("userList", getUserInfo);
             socket.broadcast.emit("userList", getUserInfo);
 
             socket.emit("roomList", getRoomInfo);
             socket.broadcast.emit("roomList", getRoomInfo);
 
-            console.log('userList', getUserInfo);
-            console.log('roomList', getRoomInfo);
+            //console.log('userList', getUserInfo);
+            //console.log('roomList', getRoomInfo);
 
             socket.on("disconnect", (reason: string) => {
                 console.log("utilisateur déconnecté")

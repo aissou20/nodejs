@@ -127,8 +127,10 @@
         const listRoom = document.getElementById('chatRoom');
         for (let elt of roomList) {
             if (elt) {
+                console.log('elt',elt)
                 const list = document.createElement('li')
-                list.textContent = roomList;
+                list.setAttribute('className','name')
+                list.textContent = elt.title;
                 listRoom.appendChild(list)
                 window.scrollTo(0, document.body.scrollHeight);
             }

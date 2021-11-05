@@ -21,6 +21,12 @@ var WSServer = /** @class */ (function () {
                 pseudo: "Utilisateur test",
                 imgUrl: "image url",
             });
+            var user1 = new User_1.User({
+                id: socket.id,
+                collection: _this.onlineUsers,
+                pseudo: "Utilisateur 1",
+                imgUrl: "image url 1",
+            });
             console.log("user__", user);
             var room = new Room_1.Room({
                 id: (0, uuid_1.v4)(),
@@ -29,20 +35,18 @@ var WSServer = /** @class */ (function () {
                 usersCollection: _this.onlineUsers,
             });
             _this.onlineUsers.add(user);
+            _this.onlineUsers.add(user1);
             var getUserInfo = _this.buildUserInfo();
             user.joinRoom(socket.id);
             _this.rooms.add(room);
             var getRoomInfo = _this.buildRoomInfo();
             room.joinUser(room.id);
-            /* const userList = this.onlineUsers;
-             console.log(userList)
-             const roomList = this.rooms.all;*/
             socket.emit("userList", getUserInfo);
             socket.broadcast.emit("userList", getUserInfo);
             socket.emit("roomList", getRoomInfo);
             socket.broadcast.emit("roomList", getRoomInfo);
-            console.log('userList', getUserInfo);
-            console.log('roomList', getRoomInfo);
+            //console.log('userList', getUserInfo);
+            //console.log('roomList', getRoomInfo);
             socket.on("disconnect", function (reason) {
                 console.log("utilisateur déconnecté");
                 if (reason) {
