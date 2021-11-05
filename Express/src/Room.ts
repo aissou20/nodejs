@@ -141,7 +141,6 @@ export class Room implements IRoom{
                 this._joinedUsers.push(userId)
                 return  true
             }
-
         }
         return false
     }

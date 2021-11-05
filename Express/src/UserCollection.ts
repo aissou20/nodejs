@@ -59,10 +59,8 @@ export class Users implements IUserCollection {
     add(user: IUser): void {
         if (this._ids.indexOf(user.id) == -1) {
             this._ids.push(user.id)
+            this._users[user.id]=user
         }
-        // if (!(user.id in this._users)) {
-        //     this._ids.push(user.id)
-        // }
     }
 
     del(id: string): void {
@@ -77,18 +75,6 @@ export class Users implements IUserCollection {
         }
         return false;
     }
-
-    /* next(...args: [] | [any]): { value: IUser, done?: false } | { value?: IUser, done: true } {
-         const currentId = this.nextIdx;
-         this.nextIdx++;
-         if (this.nextIdx >= this._ids.length) {
-             this.nextIdx = 0;
-             return {value: this._users[currentId], done: true}
-         }
-         return {value: this._users[currentId], done: false}
-     }*/
-
-
 
     next(...args: Array<any>): { value: IUser, done?: false } | { value: undefined, done: true } {
         if (this.nextIdx < this._ids.length) {

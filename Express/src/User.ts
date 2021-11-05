@@ -97,8 +97,8 @@ export class User implements IUser {
     constructor(config: IUserConfig) {
         this.collection = config.collection;
         this._rooms = [];
-        this._pseudo="";
-        this._imgUrl="";
+        this._pseudo=config.pseudo;
+        this._imgUrl=config.imgUrl;
         this.id =config.id;
 
     }

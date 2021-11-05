@@ -19,6 +19,7 @@ var Users = /** @class */ (function () {
     Users.prototype.add = function (user) {
         if (this._ids.indexOf(user.id) == -1) {
             this._ids.push(user.id);
+            this._users[user.id] = user;
         }
         // if (!(user.id in this._users)) {
         //     this._ids.push(user.id)

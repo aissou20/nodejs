@@ -5,14 +5,17 @@ var User = /** @class */ (function () {
     function User(config) {
         this.collection = config.collection;
         this._rooms = [];
-        this._pseudo = "";
-        this._imgUrl = "";
+        this._pseudo = config.pseudo;
+        this._imgUrl = config.imgUrl;
         this.id = config.id;
     }
     Object.defineProperty(User.prototype, "pseudo", {
         get: function () {
             return this._pseudo;
         },
+        /**
+         * on en aura pas besoin car  c'est à vide
+         */
         set: function (value) {
         },
         enumerable: false,

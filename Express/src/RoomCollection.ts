@@ -56,6 +56,7 @@ export class Rooms implements IRoomCollection{
     add(room:IRoom): void {
         if(this._ids.indexOf(room.id)==-1){
             this._ids.push(room.id)
+            this.rooms[room.id] = room
         }
     }
 
@@ -72,11 +73,11 @@ export class Rooms implements IRoomCollection{
         return false;
     }
 
-    // @ts-ignore
-    next(...args: Array<string>): { value: IRoom, done?: false } | { value: undefined, done: true } {
+
+    next(...args: Array<any>): { value: IRoom, done?: false } | { value: undefined, done: true } {
         if (this.nextIdx < this._ids.length) {
-            // @ts-ignore
-            const ret = {value: IRoom, done: false} = {value: this.rooms[this._ids[this.nextIdx]], done: false}
+
+            const ret : {value: IRoom, done: false} = {value: this.rooms[this._ids[this.nextIdx]], done: false}
             this.nextIdx++
             return ret
         }

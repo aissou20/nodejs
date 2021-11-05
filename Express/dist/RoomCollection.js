@@ -19,6 +19,7 @@ var Rooms = /** @class */ (function () {
     Rooms.prototype.add = function (room) {
         if (this._ids.indexOf(room.id) == -1) {
             this._ids.push(room.id);
+            this.rooms[room.id] = room;
         }
     };
     Rooms.prototype.del = function (id) {
@@ -32,16 +33,13 @@ var Rooms = /** @class */ (function () {
         }
         return false;
     };
-    // @ts-ignore
     Rooms.prototype.next = function () {
-        var _a;
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
         if (this.nextIdx < this._ids.length) {
-            // @ts-ignore
-            var ret = (_a = { value: this.rooms[this._ids[this.nextIdx]], done: false }, IRoom = _a.value, false = _a.done, _a);
+            var ret = { value: this.rooms[this._ids[this.nextIdx]], done: false };
             this.nextIdx++;
             return ret;
         }
